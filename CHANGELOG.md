@@ -2,6 +2,9 @@
 
 ## 2026-07-05
 
+### Fixed
+- 无 CloudBase 环境时全站不可用（后台持续初始化、查询无响应）：新增 localStorage 兜底存储层，`cloudbase.ts` 自动检测 ENV_ID 占位符并切换至本地存储模式，所有接口（提交/查询/妥收/管理配置/管理列表/状态更新）在 localStorage 模式下完全可用
+
 ### Added
 - 加密工具模块 `src/lib/crypto.ts`，支持 AES-GCM 对称加密 + SHA-256 密码哈希 + PBKDF2 密钥派生
 - 通用 Modal 弹窗组件 `src/components/Modal.tsx`
