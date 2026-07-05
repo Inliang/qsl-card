@@ -2,12 +2,14 @@
 AIGC:
     Label: "1"
     ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 4d32f127e120f5be24dadce57b263d70_e15d74dc787111f1b3d35254007bceed
-    ReservedCode1: Lrr2aCEdUI48wNdgjqV+CDQSjwozd77bUXb41ebMh48OgheZaWZ8DXCwyhAm6pVtfUjw3ECzlbClJIDWvjIk7JtY5YZMzLZ04sp1f1OEJOZDtRunbyTGpmHe8Ns5iiOiX27peUyxBbBWg4puH3M8fOVYIE4hlxBQOrNcopVWWdaT65yPlnJCdiM25kk=
+    ProduceID: 4d32f127e120f5be24dadce57b263d70_f704b381787311f1b3d35254007bceed
+    ReservedCode1: ji+f13WIVR2d0hyE5ThtnSI8A9xevkNYRztWp2f6mdhGgHf2MwMononO8FtfIc60OT5rAeoTYb4P4VeaxG9Zx+DCTDbMdD94R4Q7ydcS8fxnaDxUxEqrRp2MAqjKTdUelHEIRGpagDrv6K0QfRCRiTcZl1UfYC+D2PpidrmPx16tgmsNo2D4+A6aBoE=
     ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 4d32f127e120f5be24dadce57b263d70_e15d74dc787111f1b3d35254007bceed
-    ReservedCode2: Lrr2aCEdUI48wNdgjqV+CDQSjwozd77bUXb41ebMh48OgheZaWZ8DXCwyhAm6pVtfUjw3ECzlbClJIDWvjIk7JtY5YZMzLZ04sp1f1OEJOZDtRunbyTGpmHe8Ns5iiOiX27peUyxBbBWg4puH3M8fOVYIE4hlxBQOrNcopVWWdaT65yPlnJCdiM25kk=
+    PropagateID: 4d32f127e120f5be24dadce57b263d70_f704b381787311f1b3d35254007bceed
+    ReservedCode2: ji+f13WIVR2d0hyE5ThtnSI8A9xevkNYRztWp2f6mdhGgHf2MwMononO8FtfIc60OT5rAeoTYb4P4VeaxG9Zx+DCTDbMdD94R4Q7ydcS8fxnaDxUxEqrRp2MAqjKTdUelHEIRGpagDrv6K0QfRCRiTcZl1UfYC+D2PpidrmPx16tgmsNo2D4+A6aBoE=
 ---
+
+
 
 # QSL 卡片交换网站 — 设计规格说明
 
@@ -189,4 +191,5 @@ interface AdminUser {
 
 - **方案 A（统一申请流 + 动态表单）** vs 方案 B（独立申请流）：选择 A，降低维护成本，SWL 限制通过路由层控制
 - **移动端策略**：全端一致（方案 3），移动端与桌面端功能完全对等
+*（内容由AI生成，仅供参考）*
 *（内容由AI生成，仅供参考）*
