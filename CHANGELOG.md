@@ -3,7 +3,7 @@
 ## 2026-07-05
 
 ### Fixed
-- 按呼号查询仅匹配己方（from_call），对方（to_call）无法查到记录：`queryRequests` 及 localStorage 模式下同时匹配 from_call 和 to_call，双方均可查询
+- 按呼号查询仅匹配己方（from_call），对方（to_call）无法查到记录：CloudBase 路径使用 `_.or([{from_call}, {to_call}])` 复合查询，localStorage 同时匹配双方 — 两路径均已覆盖
 - 无 CloudBase 环境时全站不可用（后台持续初始化、查询无响应）：新增 localStorage 兜底存储层，`cloudbase.ts` 自动检测 ENV_ID 占位符并切换至本地存储模式，所有接口（提交/查询/妥收/管理配置/管理列表/状态更新）在 localStorage 模式下完全可用
 
 ### Added

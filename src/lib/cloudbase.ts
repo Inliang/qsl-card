@@ -71,8 +71,9 @@ export async function queryRequests(params: { id?: string; call?: string }) {
       const res = await db.collection('qsl_requests').doc(params.id).get();
       return res.data ? [res.data] : [];
     }
+    const _ = db.command;
     const res = await db.collection('qsl_requests')
-      .where({ from_call: params.call })
+      .where(_.or([{ from_call: params.call }, { to_call: params.call }]))
       .orderBy('created_at', 'desc')
       .limit(50)
       .get();
