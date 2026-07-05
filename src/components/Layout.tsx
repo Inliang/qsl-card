@@ -59,6 +59,11 @@ export default function Layout() {
           );
         })}
       </nav>
+
+      {/* 构建时间戳 */}
+      <footer className="hidden md:block text-center text-xs text-gray-400 py-3 mt-auto">
+        Build: {__BUILD_TIME__}
+      </footer>
     </div>
   );
 }
