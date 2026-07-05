@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### Changed
+- deploy.yml 的 node-version 从 22 升级到 24，消除 Node 20 弃用警告
+
 ### Fixed
 - BrowserRouter 改为 HashRouter，修复 GitHub Pages SPA 路由白屏
 - 删除冲突的 Jekyll 自动部署工作流
