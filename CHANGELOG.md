@@ -3,6 +3,13 @@
 ## 2026-07-05
 
 ### Added
+- GitHub Actions 自动部署到 GitHub Pages（deploy.yml）
+- vite.config.ts 设置 base 为 `/qsl-card/`
+
+### Changed
+- package.json 项目名从 qsl-card-tmp 改为 qsl-card
+
+### Added
 - 初始化项目：React 18 + TypeScript + Tailwind CSS v4 + Vite
 - 首页/申请页：三种卡片类型（QSL / EYEBALL / SWL）动态表单
 - 状态查询页：按编号或呼号查询卡片处理进度
