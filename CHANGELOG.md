@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Fixed
+- BrowserRouter 改为 HashRouter，修复 GitHub Pages SPA 路由白屏
+- 删除冲突的 Jekyll 自动部署工作流
+
 ## 2026-07-05
 
 ### Added
