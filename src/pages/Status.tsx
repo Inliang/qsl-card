@@ -86,7 +86,7 @@ export default function Status() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-gray-900 mb-2">状态查询</h1>
-      <p className="text-gray-500 text-sm mb-6">输入申请编号或呼号查询卡片处理进度</p>
+      <p className="text-gray-500 text-sm mb-6">输入申请编号或任意一方呼号查询卡片处理进度</p>
 
       <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
         <div className="flex gap-2 mb-4">
@@ -110,7 +110,7 @@ export default function Status() {
         <div className="flex gap-3">
           <input
             className="flex-1 rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none"
-            placeholder={mode === 'id' ? '输入申请编号' : '输入呼号，如 BG1XXX'}
+            placeholder={mode === 'id' ? '输入申请编号' : '输入己方或对方呼号，如 BG1XXX'}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleQuery()}

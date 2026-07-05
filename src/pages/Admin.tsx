@@ -14,6 +14,9 @@ const STATUS_ORDER = ['申请', '待处理', '处理中', '已寄出', '已妥�
 const FIELD_CLASSES =
   'w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all bg-white';
 
+const BTN_CLASSES =
+  'py-2.5 rounded-xl font-medium text-sm transition-all disabled:opacity-50';
+
 /* ===== 首次密码设置 ===== */
 function SetupView({ onDone }: { onDone: () => void }) {
   const [pwd, setPwd] = useState('');
@@ -151,6 +154,13 @@ function Dashboard() {
   const [typeFilter, setTypeFilter] = useState('');
   const [loading, setLoading] = useState(false);
   const [updating, setUpdating] = useState<string | null>(null);
+  const [showPwdForm, setShowPwdForm] = useState(false);
+  const [oldPwd, setOldPwd] = useState('');
+  const [newPwd, setNewPwd] = useState('');
+  const [newPwd2, setNewPwd2] = useState('');
+  const [pwdError, setPwdError] = useState('');
+  const [pwdMsg, setPwdMsg] = useState('');
+  const [changingPwd, setChangingPwd] = useState(false);
   const pageSize = 15;
 
   const fetchData = async () => {
@@ -190,6 +200,36 @@ function Dashboard() {
     }
   };
 
+  const handleChangePwd = async () => {
+    setPwdError('');
+    setPwdMsg('');
+    if (!oldPwd || !newPwd || !newPwd2) {
+      setPwdError('所有字段必填'); return;
+    }
+    if (newPwd.length < 6) {
+      setPwdError('新密码至少 6 位'); return;
+    }
+    if (newPwd !== newPwd2) {
+      setPwdError('两次新密码不一致'); return;
+    }
+    setChangingPwd(true);
+    try {
+      const config = await getAdminConfig();
+      const oldHash = await hashPassword(oldPwd);
+      if (oldHash !== config?.password_hash) {
+        setPwdError('当前密码错误'); return;
+      }
+      const newHash = await hashPassword(newPwd);
+      await setAdminPassword(newHash);
+      setPwdMsg('密码已更新');
+      setOldPwd(''); setNewPwd(''); setNewPwd2('');
+    } catch (e: any) {
+      setPwdError(e.message || '修改失败');
+    } finally {
+      setChangingPwd(false);
+    }
+  };
+
   const totalPages = Math.ceil(total / pageSize);
 
   return (
@@ -197,7 +237,43 @@ function Dashboard() {
       <h1 className="text-2xl font-bold text-gray-900 mb-2">管理后台</h1>
       <p className="text-gray-500 text-sm mb-6">
         共 {total} 条记录
+        <button
+          onClick={() => { setShowPwdForm((v) => !v); setPwdError(''); setPwdMsg(''); }}
+          className="ml-3 text-xs text-indigo-500 hover:text-indigo-600 font-medium"
+        >
+          {showPwdForm ? '收起' : '修改密码'}
+        </button>
       </p>
+
+      {/* 修改密码 */}
+      {showPwdForm && (
+        <div className="bg-white rounded-xl border border-gray-200 p-5 mb-4">
+          <h3 className="text-sm font-semibold text-gray-900 mb-3">修改管理密码</h3>
+          <div className="space-y-3">
+            <input
+              type="password" className={FIELD_CLASSES} placeholder="当前密码"
+              value={oldPwd} onChange={(e) => setOldPwd(e.target.value)}
+            />
+            <input
+              type="password" className={FIELD_CLASSES} placeholder="新密码（至少 6 位）"
+              value={newPwd} onChange={(e) => setNewPwd(e.target.value)}
+            />
+            <input
+              type="password" className={FIELD_CLASSES} placeholder="确认新密码"
+              value={newPwd2} onChange={(e) => setNewPwd2(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleChangePwd()}
+            />
+          </div>
+          {pwdError && <p className="text-sm text-red-500 mt-2">{pwdError}</p>}
+          {pwdMsg && <p className="text-sm text-green-500 mt-2">{pwdMsg}</p>}
+          <button
+            onClick={handleChangePwd} disabled={changingPwd}
+            className={`mt-3 px-6 ${BTN_CLASSES} bg-indigo-600 text-white hover:bg-indigo-700`}
+          >
+            {changingPwd ? '修改中...' : '确认修改'}
+          </button>
+        </div>
+      )}
 
       {/* 筛选 */}
       <div className="flex flex-wrap gap-2 mb-4">

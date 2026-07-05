@@ -85,7 +85,7 @@ export async function queryRequests(params: { id?: string; call?: string }) {
     return found ? [found] : [];
   }
   const call = params.call?.toUpperCase();
-  return list.filter((r) => r.from_call?.toUpperCase() === call);
+  return list.filter((r) => r.from_call?.toUpperCase() === call || r.to_call?.toUpperCase() === call);
 }
 
 export async function confirmReceived(id: string) {

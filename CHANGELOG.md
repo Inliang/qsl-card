@@ -3,9 +3,11 @@
 ## 2026-07-05
 
 ### Fixed
+- 按呼号查询仅匹配己方（from_call），对方（to_call）无法查到记录：`queryRequests` 及 localStorage 模式下同时匹配 from_call 和 to_call，双方均可查询
 - 无 CloudBase 环境时全站不可用（后台持续初始化、查询无响应）：新增 localStorage 兜底存储层，`cloudbase.ts` 自动检测 ENV_ID 占位符并切换至本地存储模式，所有接口（提交/查询/妥收/管理配置/管理列表/状态更新）在 localStorage 模式下完全可用
 
 ### Added
+- 管理后台增加修改密码功能：Dashboard 顶部「修改密码」按钮展开表单，需验证当前密码后设置新密码
 - 加密工具模块 `src/lib/crypto.ts`，支持 AES-GCM 对称加密 + SHA-256 密码哈希 + PBKDF2 密钥派生
 - 通用 Modal 弹窗组件 `src/components/Modal.tsx`
 - Home 页面表单验证（呼号格式校验、RST/SINPO 数值范围校验）
